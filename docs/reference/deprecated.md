@@ -7,6 +7,7 @@ Gutenberg's deprecation policy is intended to support backwards-compatibility fo
 - The following editor store actions have been removed: `createNotice`, `removeNotice`, `createSuccessNotice`, `createInfoNotice`, `createErrorNotice`, `createWarningNotice`. Use the equivalent actions by the same name from the `@wordpress/notices` module.
 - The id prop of wp.nux.DotTip has been removed. Please use the tipId prop instead.
 - `wp.blocks.isValidBlock` has been removed. Please use `wp.blocks.isValidBlockContent` instead but keep in mind that the order of params has changed.
+- `moment` has been removed from the public API for the date module.
 
 ## 4.3.0
 
