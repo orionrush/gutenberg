@@ -9,6 +9,8 @@ import {
 	pressWithModifier,
 	visitAdmin,
 	clickBlockAppender,
+	switchToAdminUser,
+	switchToTestUser,
 } from '../support/utils';
 import { activatePlugin, deactivatePlugin } from '../support/plugins';
 
@@ -60,12 +62,12 @@ describe( 'templates', () => {
 		const STANDARD_FORMAT_VALUE = '0';
 
 		async function setPostFormat( format ) {
+			await switchToAdminUser();
 			await visitAdmin( 'options-writing.php' );
 			await page.select( '#default_post_format', format );
-			return Promise.all( [
-				page.waitForNavigation(),
-				page.click( '#submit' ),
-			] );
+			await page.click( '#submit' );
+			await page.waitForNavigation();
+			await switchToTestUser();
 		}
 
 		beforeAll( async () => await setPostFormat( 'image' ) );
@@ -93,9 +95,13 @@ describe( 'templates', () => {
 		} );
 
 		it( 'should not populate new page with default block for format', async () => {
+			// This test always needs to run as the admin user.
+			// It can't be skipped, because then it failed because of not testing the snapshot.
+			await switchToAdminUser();
 			await newPost( { postType: 'page' } );
 
 			expect( await getEditedPostContent() ).toMatchSnapshot();
+			await switchToTestUser();
 		} );
 	} );
 } );
