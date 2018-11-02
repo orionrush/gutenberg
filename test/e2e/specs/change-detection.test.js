@@ -94,8 +94,8 @@ describe( 'Change detection', () => {
 		// Toggle post as sticky (not persisted for autosave).
 		await ensureSidebarOpened();
 
-		const postStickyToggleButton = ( await page.$x( "//label[contains(text(), 'Pending Review')]" ) )[ 0 ];
-		await postStickyToggleButton.click( 'button' );
+		const postPendingReviewButton = ( await page.$x( "//label[contains(text(), 'Pending Review')]" ) )[ 0 ];
+		await postPendingReviewButton.click( 'button' );
 
 		// Force autosave to occur immediately.
 		await Promise.all( [
