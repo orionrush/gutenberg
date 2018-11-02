@@ -91,7 +91,7 @@ describe( 'Change detection', () => {
 	it( 'Should prompt to confirm unsaved changes for autosaved draft for non-content fields', async () => {
 		await page.type( '.editor-post-title__input', 'Hello World' );
 
-		// Toggle post as sticky (not persisted for autosave).
+		// Toggle post as needing review (not persisted for autosave).
 		await ensureSidebarOpened();
 
 		const postPendingReviewButton = ( await page.$x( "//label[contains(text(), 'Pending Review')]" ) )[ 0 ];
