@@ -65,8 +65,10 @@ describe( 'templates', () => {
 			await switchToAdminUser();
 			await visitAdmin( 'options-writing.php' );
 			await page.select( '#default_post_format', format );
-			await page.click( '#submit' );
-			await page.waitForNavigation();
+			await Promise.all( [
+				page.waitForNavigation(),
+				page.click( '#submit' ),
+			] );
 			await switchToTestUser();
 		}
 
