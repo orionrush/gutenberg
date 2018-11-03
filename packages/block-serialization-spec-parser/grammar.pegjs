@@ -73,7 +73,7 @@ if ( ! function_exists( 'peg_join_blocks' ) ) {
         if ( ! empty( $pre ) ) {
             $blocks[] = array(
                 'blockName' => null,
-                'attrs' => json_decode( '{}', false ),
+                'attrs' => new stdClass,
                 'innerBlocks' => array(),
                 'innerHTML' => $pre
             );
@@ -87,7 +87,7 @@ if ( ! function_exists( 'peg_join_blocks' ) ) {
             if ( ! empty( $html ) ) {
                 $blocks[] = array(
                     'blockName' => null,
-                    'attrs' => json_decode( '{}', false ),
+                    'attrs' => new stdClass,
                     'innerBlock' => array(),
                     'innerHTML' => $html
                 );
@@ -97,7 +97,7 @@ if ( ! function_exists( 'peg_join_blocks' ) ) {
         if ( ! empty( $post ) ) {
             $blocks[] = array(
                 'blockName' => null,
-                'attrs' => json_decode( '{}', false ),
+                'attrs' => new stdClass,
                 'innerBlocks' => array(),
                 'innerHTML' => $post
             );
@@ -198,7 +198,7 @@ Block_Void
     /** <?php
     return array(
       'blockName'   => $blockName,
-      'attrs'       => empty( $attrs ) ? json_decode( '{}', false ) : $attrs,
+      'attrs'       => empty( $attrs ) ? new stdClass : $attrs,
       'innerBlocks' => array(),
       'innerHTML'   => '',
     );
@@ -220,7 +220,7 @@ Block_Balanced
 
     return array(
       'blockName'   => $s['blockName'],
-      'attrs'       => empty( $s['attrs'] ) ? json_decode( '{}', false ) : $s['attrs'],
+      'attrs'       => empty( $s['attrs'] ) ? new stdClass : $s['attrs'],
       'innerBlocks' => $innerBlocks,
       'innerHTML'   => implode( '', $innerHTML ),
     );

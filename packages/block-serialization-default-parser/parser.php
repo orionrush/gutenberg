@@ -369,13 +369,7 @@ class WP_Block_Parser {
 		$name      = $namespace . $matches[ 'name' ][ 0 ];
 		$has_attrs = isset( $matches[ 'attrs' ] ) && -1 !== $matches[ 'attrs' ][ 1 ];
 
-		/*
-		 * Fun fact! It's not trivial in PHP to create "an empty associative array" since all arrays
-		 * are associative arrays. If we use `array()` we get a JSON `[]`
-		 */
-		$attrs = $has_attrs
-			? json_decode( $matches[ 'attrs' ][ 0 ], /* as-associative */ true )
-			: json_decode( '{}', /* don't ask why, just verify in PHP */ false );
+		$attrs = $has_attrs ? json_decode( $matches[ 'attrs' ][ 0 ], /* as-associative */ true ) : new stdClass;
 
 		/*
 		 * This state isn't allowed
@@ -406,7 +400,7 @@ class WP_Block_Parser {
 	 * @return WP_Block_Parser_Block freeform block object
 	 */
 	static function freeform( $innerHTML ) {
-		return new WP_Block_Parser_Block( null, json_decode( '{}', false ), array(), $innerHTML );
+		return new WP_Block_Parser_Block( null, new stdClass, array(), $innerHTML );
 	}
 
 	/**

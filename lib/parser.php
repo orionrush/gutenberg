@@ -260,7 +260,7 @@ class Gutenberg_PEG_Parser {
     private function peg_f3($blockName, $attrs) {
         return array(
           'blockName'   => $blockName,
-          'attrs'       => empty( $attrs ) ? json_decode( '{}', false ) : $attrs,
+          'attrs'       => empty( $attrs ) ? new stdClass : $attrs,
           'innerBlocks' => array(),
           'innerHTML'   => '',
         );
@@ -270,7 +270,7 @@ class Gutenberg_PEG_Parser {
 
         return array(
           'blockName'   => $s['blockName'],
-          'attrs'       => empty( $s['attrs'] ) ? json_decode( '{}', false ) : $s['attrs'],
+          'attrs'       => empty( $s['attrs'] ) ? new stdClass : $s['attrs'],
           'innerBlocks' => $innerBlocks,
           'innerHTML'   => implode( '', $innerHTML ),
         );
@@ -1463,7 +1463,7 @@ class Gutenberg_PEG_Parser {
             if ( ! empty( $pre ) ) {
                 $blocks[] = array(
                     'blockName' => null,
-                    'attrs' => json_decode( '{}', false ),
+                    'attrs' => new stdClass,
                     'innerBlocks' => array(),
                     'innerHTML' => $pre
                 );
@@ -1477,7 +1477,7 @@ class Gutenberg_PEG_Parser {
                 if ( ! empty( $html ) ) {
                     $blocks[] = array(
                         'blockName' => null,
-                        'attrs' => json_decode( '{}', false ),
+                        'attrs' => new stdClass,
                         'innerBlock' => array(),
                         'innerHTML' => $html
                     );
@@ -1487,7 +1487,7 @@ class Gutenberg_PEG_Parser {
             if ( ! empty( $post ) ) {
                 $blocks[] = array(
                     'blockName' => null,
-                    'attrs' => json_decode( '{}', false ),
+                    'attrs' => new stdClass,
                     'innerBlocks' => array(),
                     'innerHTML' => $post
                 );
